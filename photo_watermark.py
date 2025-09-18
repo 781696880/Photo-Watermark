@@ -275,9 +275,12 @@ def main():
     
     # If it's a file
     if os.path.isfile(args.path):
-        # Generate output directory
+        # Generate output directory - use the parent directory name
         file_dir = os.path.dirname(args.path)
-        dir_name = os.path.basename(file_dir) if file_dir else "watermark_output"
+        if not file_dir:  # If file is in current directory
+            file_dir = os.getcwd()
+        
+        dir_name = os.path.basename(os.path.normpath(file_dir))
         output_dir = os.path.join(file_dir, f"{dir_name}_watermark")
         
         # Process the single image
