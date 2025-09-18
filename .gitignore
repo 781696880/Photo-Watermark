@@ -17,3 +17,7 @@ Thumbs.db
 
 # Output directories
 *_watermark/
+
+# Exception for sample output directory
+!Photo-Watermark_watermark/
+!Photo-Watermark_watermark/sample.jpg
