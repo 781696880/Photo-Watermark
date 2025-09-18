@@ -4,7 +4,7 @@
 
 Photo-Watermark 是一个Python命令行工具，用于自动为照片添加基于拍摄时间的水印。该工具读取图片的EXIF信息，提取拍摄时间，并将该时间作为水印文本添加到图片上。
 
-## 功能需求
+## 功能
 
 ### 核心功能
 
@@ -87,30 +87,60 @@ photo-watermark -s 36 -c red /path/to/photos/
 photo-watermark -p top-left -f "YYYY-MM-DD HH:mm:ss" /path/to/image.jpg
 ```
 
-## 技术要求
-
-### 开发语言
-- Python 3.6+
-
-### 依赖库
-- Pillow (PIL) - 图片处理
-- ExifRead 或 piexif - EXIF信息读取
-
-### 兼容性
-- 支持Windows、macOS和Linux操作系统
-- 支持常见图片格式：JPEG、PNG、TIFF
-
 ## 安装说明
 
-```bash
-pip install -r requirements.txt
-```
+### 环境要求
+- Python 3.6+
+
+### 安装步骤
+
+1. 克隆或下载项目代码
+2. 安装依赖包：
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ## 使用说明
 
-1. 安装依赖
-2. 运行命令行工具指定图片路径
-3. 查看输出目录获取添加水印后的图片
+### 基本使用
+
+直接运行程序并指定图片路径：
+```bash
+python photo_watermark.py /path/to/image.jpg
+```
+
+处理整个目录中的图片：
+```bash
+python photo_watermark.py /path/to/photos/
+```
+
+### 高级选项
+
+自定义水印字体大小：
+```bash
+python photo_watermark.py -s 36 /path/to/image.jpg
+```
+
+自定义水印颜色：
+```bash
+python photo_watermark.py -c red /path/to/image.jpg
+```
+
+自定义水印位置：
+```bash
+python photo_watermark.py -p top-left /path/to/image.jpg
+```
+
+自定义时间格式：
+```bash
+python photo_watermark.py -f "%Y-%m-%d %H:%M:%S" /path/to/image.jpg
+```
+
+### 输出结果
+
+处理后的图片将保存在以下位置：
+- 处理单个文件：在文件所在目录创建`[目录名]_watermark`子目录
+- 处理目录中的文件：在该目录下创建`[目录名]_watermark`子目录
 
 ## 项目结构
 
@@ -121,3 +151,11 @@ photo-watermark/
 ├── requirements.txt    # 依赖包列表
 └── tests/              # 测试文件目录
 ```
+
+## 后续扩展功能
+
+- 支持自定义时间格式
+- 批量处理进度显示
+- 支持其他EXIF信息作为水印（如相机型号、光圈等）
+- 支持图片水印（而非仅文本水印）
+- GUI界面版本
